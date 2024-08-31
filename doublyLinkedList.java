@@ -168,4 +168,66 @@ public class doublyLinkedList {
 
 
     }
+
+
+    //inserting at the kth position in doubly linked list.
+
+
+    //inserting before the head
+
+
+    private static Node beforeHEAD(Node head, int val) {
+
+        Node newNode = new Node(val, head, null);
+        head.prev = newNode;
+
+        return newNode;
+    }
+
+
+    //inserting before the TAIL
+
+    private static Node(Node head, int val) {
+
+        if (head.next == null) {
+
+            beforeHEAD(head, val);
+
+        }
+
+        Node tail = head;
+
+        //moving the tail to the last node
+
+        while (tail.next != null) {
+            tail = tail.next;
+        }
+
+        Node back = tail.prev;
+        Node newNode = new Node(val, tail, back);
+        back.next = newNode;
+        tail.prev = newNode;
+    }
+
+
+    //inserting at the Kth node of the linked list
+
+
+    void addNode(Node head_ref, int pos, int data) {
+        // Your code here
+
+        int p = 0;
+        Node temp = head_ref;
+        while (p < pos) {
+            temp = temp.next;
+            p++;
+        }
+
+        Node n = new Node(data);
+        n.next = temp.next;
+        n.prev = temp;
+        temp.next = n;
+
+
+    }
 }
