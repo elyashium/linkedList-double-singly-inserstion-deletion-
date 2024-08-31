@@ -37,6 +37,50 @@ public class linkedList {
     }
 
 
+    //reversing linked list => RECURSIVE
+
+
+        private static Node reverseList(Node head) {
+
+            //recursive
+
+            if(head == null || head.next == null){
+
+                return head; //base case for single or null Node.
+            }
+
+            Node newhead = reverseList(head.next);
+            Node front = head.next;
+            front.next = head;
+            head.next = null;
+
+            return newhead;
+
+        }
+
+
+    //reversing linked list => ITERATIVE
+
+  private static Node reverseList(Node head) {
+
+        //iterative 
+        Node previous = null;
+        Node current = head;
+        Node next = null;
+
+        while (current != null) {
+            next = current.next;   // Store next node
+            current.next = previous; // Reverse the current node's pointer
+            previous = current;    // Move pointers one position ahead
+            current = next;
+        }
+
+        head = previous; // Previous will be the new head after the loop
+        return head;
+
+    }
+
+
     public static void main(String[] args) {
         int[] arr = {2, 5, 6, 8};
         Node y = new Node(arr[2]);
