@@ -47,4 +47,21 @@ public class reversingDLL {
         return last.prev;
     }
 
+    // Function to reverse a linked list.
+    Node reverseList(Node head) {
+        Node previous = null;
+        Node current = head;
+        Node next = null;
+
+        while (current != null) {
+            next = current.next;   // Store next node
+            current.next = previous; // Reverse the current node's pointer
+            previous = current;    // Move pointers one position ahead
+            current = next;
+        }
+
+        head = previous; // Previous will be the new head after the loop
+        return head;
+    }
+
 }
