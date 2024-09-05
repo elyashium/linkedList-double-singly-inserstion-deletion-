@@ -122,29 +122,26 @@ public class linkedList2 {
         // second pointer reaches the end, the first pointer will be pointing to the
         // node just before the one that needs to be removed.
 
-        // Create a dummy node to handle edge cases like removing the first node
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        ListNode first = dummy;
-        ListNode second = dummy;
+        ListNode fast = head;
+        ListNode slow = head;
 
-        // Move the first pointer n+1 steps ahead to create the gap
-        for (int i = 0; i <= n; i++) {
-            first = first.next;
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;
+
+            if (fast == null) { // If fast becomes null after moving n steps, it means the node to be removed is
+                                // the head node
+                return head.next;
+            }
         }
 
-        // Move both pointers until the first reaches the end
-        while (first != null) {
-            first = first.next;
-            second = second.next;
+        while (fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
         }
 
-        // Remove the nth node
-        second.next = second.next.next;
+        slow.next = slow.next.next;
+        return head;
 
-        // Return the head of the modified list
-        return dummy.next;
-    }
 }
 
 }
