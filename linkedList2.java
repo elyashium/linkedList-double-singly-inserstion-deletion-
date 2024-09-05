@@ -111,4 +111,40 @@ public class linkedList2 {
         }
         return head;
     }
+
+//removing nth element from the back.
+
+    class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+
+        // approach is to use two pointers. The idea is to maintain a gap of n nodes
+        // between two pointers and then move both pointers at the same pace. When the
+        // second pointer reaches the end, the first pointer will be pointing to the
+        // node just before the one that needs to be removed.
+
+        // Create a dummy node to handle edge cases like removing the first node
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode first = dummy;
+        ListNode second = dummy;
+
+        // Move the first pointer n+1 steps ahead to create the gap
+        for (int i = 0; i <= n; i++) {
+            first = first.next;
+        }
+
+        // Move both pointers until the first reaches the end
+        while (first != null) {
+            first = first.next;
+            second = second.next;
+        }
+
+        // Remove the nth node
+        second.next = second.next.next;
+
+        // Return the head of the modified list
+        return dummy.next;
+    }
+}
+
 }
